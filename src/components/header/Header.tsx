@@ -1,4 +1,6 @@
 import { auth, signIn } from "@/auth/auth";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function Header() {
   const session = await auth();
@@ -11,8 +13,8 @@ export default async function Header() {
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
+        <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <Image
             src="https://img.icons8.com/?size=100&id=23662&format=png&color=000000"
             className="h-8"
             alt="Luminaria Logo"
@@ -20,7 +22,7 @@ export default async function Header() {
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Luminaria
           </span>
-        </a>
+        </Link>
         <div className="flex md:order-1">
           <button
             type="button"

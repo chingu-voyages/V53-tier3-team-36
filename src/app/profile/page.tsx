@@ -1,4 +1,5 @@
 import { auth, signOut } from "@/auth/auth";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 
 export default async function Profile() {
@@ -9,7 +10,7 @@ export default async function Profile() {
     <div className={"flex flex-col items-center w-full"}>
       <h1 className={"font-bold text-lg"}>Welcome {user.name}</h1>
       {user.image && (
-        <img
+        <Image
           className={"rounded-full border border-black h-16 w-16 my-4"}
           src={user.image}
           alt={"User image"}

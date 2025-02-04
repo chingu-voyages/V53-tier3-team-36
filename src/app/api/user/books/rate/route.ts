@@ -48,7 +48,7 @@ export const POST = auth(async function POST(req) {
     });
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed update book rating" },
+      { error: `Failed to update book rating: ${(error as Error).message}` },
       { status: 500 }
     );
   }
@@ -100,7 +100,7 @@ export const PATCH = auth(async function PATCH(req) {
     });
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to delete book rating" },
+      { error: `Failed to delete book rating ${(error as Error).message}` },
       { status: 500 }
     );
   }

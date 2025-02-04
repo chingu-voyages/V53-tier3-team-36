@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const socialLinks = (name: string, github: string, linkedin: string) => {
   return (
     <div className="flex justify-center">
@@ -52,7 +54,7 @@ export default function Footer() {
         <div className="grid gap-8 px-4 py-6 lg:py-8 md:grid-cols-3 sm:grid-cols-1">
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white text-center">
-              <a href="/">Luminaria</a>
+              <Link href="/">Luminaria</Link>
             </h2>
           </div>
           <div>

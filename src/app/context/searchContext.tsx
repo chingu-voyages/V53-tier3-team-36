@@ -8,7 +8,7 @@ const SearchContext = createContext({
 export function SearchProvider({ children } : {
     children: React.ReactNode;
 }) {
-    const [state, setState] = useState({
+    const [state, ] = useState({
         searchTerm: '',
     });
 
