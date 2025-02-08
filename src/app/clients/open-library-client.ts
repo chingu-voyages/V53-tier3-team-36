@@ -4,7 +4,7 @@ import {
   SearchBookList,
 } from "@/types/open-library";
 
-const OL_URL = "http://openlibrary.org";
+const OL_URL = "https://openlibrary.org";
 
 export const OpenLibrary = {
   getTrendingBooks: async (): Promise<OpenLibraryTrendingBooksAPIResponse> => {
