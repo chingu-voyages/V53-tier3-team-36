@@ -35,7 +35,7 @@ export default function Dialog({ loggedIn }: Props) {
 
   const { getWantToReadList, getReadList } = useContext(BookDataContext);
 
-  async function onBookActionTaken(olId: string, action: BookAction) {
+  async function handleBookAction(olId: string, action: BookAction) {
     try {
       switch (action) {
         case "read":
@@ -55,6 +55,9 @@ export default function Dialog({ loggedIn }: Props) {
           if (getWantToReadList) getWantToReadList();
           break;
       }
+
+      // Refresh the userContext, this should refresh the action buttons
+      await getUserContext();
     } catch (error) {
       console.error((error as Error).message);
     }
@@ -72,8 +75,8 @@ export default function Dialog({ loggedIn }: Props) {
     setLoading(true);
 
     const getBookData = async () => {
-      const bookData = await OpenLibrary.getBookById(bookId!);
-      setBookData(bookData);
+      const res = await OpenLibrary.getBookById(bookId!);
+      setBookData(res);
     };
 
     if (bookId) {
@@ -81,12 +84,12 @@ export default function Dialog({ loggedIn }: Props) {
     }
   }, [bookId]);
 
-  useEffect(() => {
-    const getUserContext = async () => {
-      const response = await UserClient.getUser();
-      setUserContext(response);
-    };
+  const getUserContext = async () => {
+    const response = await UserClient.getUser();
+    setUserContext(response);
+  };
 
+  useEffect(() => {
     getUserContext();
   }, [bookId]);
 
@@ -130,9 +133,8 @@ export default function Dialog({ loggedIn }: Props) {
 
   const handleBookActionTaken = (action: BookAction) => {
     if (bookData) {
-      onBookActionTaken(bookData.key, action);
+      handleBookAction(bookData.key, action);
     }
-    closeDialog();
   };
 
   const handleUpdateRating = async (rating: number) => {
