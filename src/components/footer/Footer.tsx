@@ -49,7 +49,7 @@ const socialLinks = (name: string, github: string, linkedin: string) => {
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-gray-900">
+    <footer className="bg-background">
       <div className="mx-auto w-full max-w-screen-xl">
         <div className="grid gap-8 px-4 py-6 lg:py-8 md:grid-cols-3 sm:grid-cols-1">
           <div>

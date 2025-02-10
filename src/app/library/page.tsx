@@ -1,5 +1,5 @@
 "use client";
-import BookCard from "@/components/trendingBooks/BookCard";
+import BookCard from "@/components/dashboard/BookCard";
 import { BookData } from "@/types/open-library";
 import { BookDataContext } from "app/contexts/BookDataContext";
 import { useSession } from "next-auth/react";

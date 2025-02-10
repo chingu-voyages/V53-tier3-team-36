@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { OpenLibraryBook } from "@/types/open-library";
 import { useState, useEffect } from "react";
 import { OpenLibrary } from "app/clients/open-library-client";
-import BookCard from "components/trendingBooks/BookCard";
+import BookCard from "components/dashboard/BookCard";
 
 export default function Search() {
   const searchParams = useSearchParams();
