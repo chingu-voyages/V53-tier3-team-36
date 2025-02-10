@@ -44,10 +44,10 @@ export default function TrendingBooks() {
 
   return (
     <div className="pt-[60px]">
-      <div className="font-bold text-3xl font-lumiFontLato pb-3">
+      <div className="text-3xl font-lumiFontLato pb-3 text-black shadow-md">
         Trending Books
       </div>
-      <div className="p-2 bg-foreground rounded-[12px] bg-opacity-60 shadow-md">
+      <div className="p-2 bg-foreground rounded-[12px] shadow-md">
         {loading ? (
           <div
             style={{

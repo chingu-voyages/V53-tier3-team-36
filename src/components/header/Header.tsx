@@ -27,7 +27,7 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
             width={32}
             height={32}
           />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-black">
             Luminaria
           </span>
         </Link>

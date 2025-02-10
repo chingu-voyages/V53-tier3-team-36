@@ -16,6 +16,12 @@ export default function StaffPicks() {
     "/works/OL27482W",
     "/works/OL893415W",
     "/works/OL10834W",
+    "/works/OL35392322W",
+    "/works/OL85892W",
+    "/works/OL1063588W",
+    "/works/OL28736183W",
+    "/works/OL3511459W",
+    "/works/OL1911334W",
   ];
   const fetchStaffPicks = async () => {
     const bookResults = staffPickIds.map(async (id) => {
@@ -52,7 +58,7 @@ export default function StaffPicks() {
 
   return (
     <div className="pt-[90px]">
-      <div className="font-bold text-3xl font-lumiFontLato pb-3">
+      <div className="text-black text-3xl font-lumiFontLato pb-3">
         Weekly Staff Picks
       </div>
       <div className="p-2">
@@ -70,13 +76,18 @@ export default function StaffPicks() {
               containerClassName="flex-1 w-[170px] h-[240px]"
               height={240}
             />
-            <Skeleton width={120} height={10} />
-            <Skeleton width={100} height={10} />
           </div>
         ) : (
           <Carousel responsive={responsive}>
-            {booksToShow.map((book: BookData) => {
-              return <StaffPickBook id={book.key} key={book.key} url={"/?"} />;
+            {booksToShow.map((book: BookData, i: number) => {
+              return (
+                <StaffPickBook
+                  id={book!.key}
+                  key={book!.key}
+                  url={"/?"}
+                  order={i + 1}
+                />
+              );
             })}
           </Carousel>
         )}
