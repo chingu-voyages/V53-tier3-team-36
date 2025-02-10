@@ -78,6 +78,7 @@ export default function TrendingBooks() {
                   id={book.key}
                   key={book.key}
                   url={"/?"}
+                  type={"light"}
                 />
               );
             })}

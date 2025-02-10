@@ -26,11 +26,11 @@ export default function Search() {
   }, [searchTerm]);
 
   return (
-    <div className="w-full">
+    <div className="w-full py-6">
       {loading ? (
         <span>Loading...</span>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
           {books?.map((book: OpenLibraryBook) => {
             const author = Array.isArray(book.author_name)
               ? book.author_name[0]
@@ -42,6 +42,7 @@ export default function Search() {
                 id={book.key}
                 key={book.key}
                 url={`search?title=${searchTerm}&`}
+                type={"dark"}
               />
             );
           })}

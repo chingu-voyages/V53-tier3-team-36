@@ -5,11 +5,13 @@ export default function BookCard({
   author,
   id,
   url,
+  type,
 }: {
   title: string;
   author: string;
   id: string;
   url: string;
+  type: string;
 }) {
   const extractedId = id.split("/")[2];
 
@@ -24,11 +26,21 @@ export default function BookCard({
             className="rounded-[20px] w-[160px] h-[240px] border border-gray-700 shadow-lg"
           />
         </div>
-        <span className="pt-2 text-sm text-amber-50 font-lumiFontChivo">
+        <span
+          className={`pt-2 text-sm ${
+            type === "light" ? "text-amber-50" : "text-black"
+          } font-lumiFontChivo`}
+        >
           {title}
         </span>
         {author ? (
-          <span className="text-sm text-amber-500">by {author}</span>
+          <span
+            className={`text-sm ${
+              type === "light" ? "text-amber-500" : "text-grey-800"
+            }`}
+          >
+            by {author}
+          </span>
         ) : null}
       </div>
     </Link>
