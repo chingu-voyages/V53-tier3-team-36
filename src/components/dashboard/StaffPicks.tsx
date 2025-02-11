@@ -7,6 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import StaffPickBook from "./StaffPickBook";
+import { responsive } from "app/definitions/ResponsiveBreakpoints";
 
 export default function StaffPicks() {
   const [booksToShow, setBooksToShow] = useState<Array<BookData>>([]);
@@ -36,25 +37,6 @@ export default function StaffPicks() {
   useEffect(() => {
     fetchStaffPicks();
   }, []);
-
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 8,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 6,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 3,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
 
   return (
     <div className="pt-[90px]">
