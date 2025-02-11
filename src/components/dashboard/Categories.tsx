@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
-import { subjects } from "@/components/dashboard/CategoryList";
+import { subjects } from "app/definitions/CategoryList";
 
 function CategoryCard({
   category,
@@ -36,18 +36,27 @@ export default function Categories() {
         Browse by Categories
       </div>
       <div className="flex flex-wrap my-0 mx-6 justify-center">
-        {subjects.map(({ search, display, icon }, i) => {
-          return (
-            <CategoryCard
-              key={i}
-              category={display}
-              onCategoryClick={() => {
-                onCategoryClick(search);
-              }}
-              icon={icon}
-            />
-          );
-        })}
+        {subjects.map(
+          (
+            {
+              search,
+              display,
+              icon,
+            }: { search: string; display: string; icon: ReactNode },
+            i: number
+          ) => {
+            return (
+              <CategoryCard
+                key={i}
+                category={display}
+                onCategoryClick={() => {
+                  onCategoryClick(search);
+                }}
+                icon={icon}
+              />
+            );
+          }
+        )}
       </div>
     </div>
   );
