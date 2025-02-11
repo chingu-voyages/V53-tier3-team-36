@@ -41,4 +41,12 @@ export const OpenLibrary = {
       throw new Error("Failed to fetch search data");
     }
   },
+  getBooksBySubjectSearch: async (subject: string): Promise<OpenLibraryTrendingBooksAPIResponse> => {
+    const response = await fetch(`${OL_URL}/subjects/${subject}.json`);
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Failed to fetch book subject");
+    }
+  },
 };

@@ -9,16 +9,28 @@ import BookCard from "components/dashboard/BookCard";
 export default function Search() {
   const searchParams = useSearchParams();
   const searchTerm = searchParams.get("title");
+  const categoryTerm = searchParams.get("category");
 
   const [books, setBooks] = useState<OpenLibraryBook[] | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getSearchBooks = async () => {
-      const bookList = await OpenLibrary.getBooksBySearch(searchTerm as string);
-      const { docs } = bookList;
-      const booksToShow = docs.slice(0, 20);
-      setBooks(booksToShow);
+      if (categoryTerm) {
+        const bookList = await OpenLibrary.getBooksBySubjectSearch(
+          categoryTerm as string
+        );
+        const { works } = bookList;
+        const booksToShow = works.slice(0, 20);
+        setBooks(booksToShow);
+      } else {
+        const bookList = await OpenLibrary.getBooksBySearch(
+          searchTerm as string
+        );
+        const { docs } = bookList;
+        const booksToShow = docs.slice(0, 20);
+        setBooks(booksToShow);
+      }
       setLoading(false);
     };
 

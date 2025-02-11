@@ -44,7 +44,7 @@ export default function TrendingBooks() {
 
   return (
     <div className="pt-[60px]">
-      <div className="text-3xl font-lumiFontLato pb-3 text-black shadow-md">
+      <div className="text-3xl font-lumiFontLato pb-3 text-black">
         Trending Books
       </div>
       <div className="p-2 bg-foreground rounded-[12px] shadow-md">
