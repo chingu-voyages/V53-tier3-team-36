@@ -35,7 +35,7 @@ export default function Search() {
     };
 
     getSearchBooks();
-  }, [searchTerm]);
+  }, [searchTerm, categoryTerm]);
 
   return (
     <div className="w-full py-6">

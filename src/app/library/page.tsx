@@ -38,6 +38,7 @@ export default function Library() {
                     }
                     id={book!.key}
                     url={`/library/?`}
+                    type={"dark"}
                   />
                 );
               })}
@@ -62,6 +63,7 @@ export default function Library() {
                     }
                     id={book!.key}
                     url={`/library/?`}
+                    type={"dark"}
                   />
                 );
               })}
