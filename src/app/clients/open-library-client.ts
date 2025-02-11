@@ -45,8 +45,7 @@ export const OpenLibrary = {
     const response = await fetch(`${OL_URL}/subjects/${subject}.json`);
     if (response.ok) {
       return response.json();
-    } else {
-      throw new Error("Failed to fetch book subject");
     }
+    throw new Error("Failed to fetch book subject");
   },
 };
