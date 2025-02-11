@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 import BookCard from "./BookCard";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import BookCardLoading from "./BookCardLoading";
 
 export default function TrendingBooks() {
   const [booksToShow, setBooksToShow] = useState<Array<OpenLibraryBook>>([]);
@@ -49,22 +48,7 @@ export default function TrendingBooks() {
       </div>
       <div className="p-2 bg-foreground rounded-[12px] shadow-md">
         {loading ? (
-          <div
-            style={{
-              display: "flex",
-              width: "170px",
-              height: "315px",
-              flexDirection: "column",
-              padding: "10px",
-            }}
-          >
-            <Skeleton
-              containerClassName="flex-1 w-[170px] h-[240px]"
-              height={240}
-            />
-            <Skeleton width={120} height={10} />
-            <Skeleton width={100} height={10} />
-          </div>
+          <BookCardLoading />
         ) : (
           <Carousel responsive={responsive}>
             {booksToShow.map((book: OpenLibraryBook) => {

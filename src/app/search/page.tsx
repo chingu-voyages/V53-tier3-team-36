@@ -5,6 +5,7 @@ import { OpenLibraryBook } from "@/types/open-library";
 import { useState, useEffect } from "react";
 import { OpenLibrary } from "app/clients/open-library-client";
 import BookCard from "components/dashboard/BookCard";
+import BookCardLoading from "@/components/dashboard/BookCardLoading";
 
 export default function Search() {
   const searchParams = useSearchParams();
@@ -40,7 +41,7 @@ export default function Search() {
   return (
     <div className="w-full py-6">
       {loading ? (
-        <span>Loading...</span>
+        <BookCardLoading />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
           {books?.map((book: OpenLibraryBook) => {
