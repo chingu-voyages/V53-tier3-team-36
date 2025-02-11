@@ -1,11 +1,11 @@
 "use client";
-import BookCard from "@/components/trendingBooks/BookCard";
+import BookCard from "@/components/dashboard/BookCard";
 import { BookData } from "@/types/open-library";
 import { BookDataContext } from "app/contexts/BookDataContext";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-
 import { useContext } from "react";
+import BookCardLoading from "@/components/dashboard/BookCardLoading";
 // Library
 export default function Library() {
   const { status } = useSession();
@@ -21,7 +21,7 @@ export default function Library() {
         {/* Want to read section */}
         <h2 className="text-xl font-bold">Want to Read</h2>
         {isLoading ? (
-          <p>Loading...</p>
+          <BookCardLoading />
         ) : (
           <div className="flex flex-wrap">
             {wantToReadList?.books &&
@@ -38,6 +38,7 @@ export default function Library() {
                     }
                     id={book!.key}
                     url={`/library/?`}
+                    type={"dark"}
                   />
                 );
               })}
@@ -47,7 +48,7 @@ export default function Library() {
       <div className="mt-8 border-t-2 border-gray-200 pt-8">
         <h2 className="text-xl font-bold">Read List</h2>
         {isLoading ? (
-          <p>Loading...</p>
+          <BookCardLoading />
         ) : (
           <div className="flex flex-wrap">
             {readList?.books &&
@@ -62,6 +63,7 @@ export default function Library() {
                     }
                     id={book!.key}
                     url={`/library/?`}
+                    type={"dark"}
                   />
                 );
               })}
