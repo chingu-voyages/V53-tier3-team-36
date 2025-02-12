@@ -8,7 +8,6 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import StaffPickBook from "./StaffPickBook";
 import { responsive } from "app/definitions/ResponsiveBreakpoints";
-import { arrayBuffer } from "stream/consumers";
 
 export default function StaffPicks() {
   const [booksToShow, setBooksToShow] = useState<Array<BookData>>([]);
