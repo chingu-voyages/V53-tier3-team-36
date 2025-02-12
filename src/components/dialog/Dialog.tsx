@@ -202,17 +202,19 @@ export default function Dialog({ loggedIn }: Props) {
                         readOnly
                       />
                     </div>
-                    <div id="userRating">
-                      <StarRating
-                        ratingProps={
-                          lumiBookRatingData
-                            ? lumiBookRatingData.userRating!
-                            : null
-                        }
-                        title="My Rating"
-                        onRatingChanged={handleUpdateRating}
-                      />
-                    </div>
+                    {loggedIn && (
+                      <div id="userRating">
+                        <StarRating
+                          ratingProps={
+                            lumiBookRatingData
+                              ? lumiBookRatingData.userRating!
+                              : null
+                          }
+                          title="My Rating"
+                          onRatingChanged={handleUpdateRating}
+                        />
+                      </div>
+                    )}
                   </div>
                   {loggedIn && (
                     <div className="mt-2 md:ml-4 flex flex-col">
