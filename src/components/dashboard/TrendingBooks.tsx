@@ -24,7 +24,7 @@ export default function TrendingBooks() {
   }, []);
 
   return (
-    <div className="pt-[60px]">
+    <div className="pt-[20px]">
       <div className="text-3xl font-lumiFontLato pb-3 text-black">
         Trending Books
       </div>

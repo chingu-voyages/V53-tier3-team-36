@@ -107,7 +107,7 @@ export const subjects = [
     ),
   },
   {
-    search: "Young_adult_fiction",
+    search: "young_adult_fiction",
     display: "Young Adult",
     icon: (
       <svg
