@@ -6,11 +6,11 @@ export default async function Profile() {
   const user = session?.user;
 
   return user ? (
-    <div className={"flex flex-col items-center w-full"}>
-      <h1 className={"font-bold text-lg"}>Welcome {user.name}</h1>
+    <div className="flex flex-col items-center w-full h-[400px] justify-center">
+      <div className="font-bold text-xl">Welcome {user.name}</div>
       {user.image && (
         <NextImg
-          className={"rounded-full border border-black h-16 w-16 my-4"}
+          className="rounded-full border border-black h-16 w-16 my-4"
           src={user.image}
           alt={"User image"}
           width={32}

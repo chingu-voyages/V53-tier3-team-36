@@ -13,16 +13,20 @@ export default function StaffPicks() {
   const [booksToShow, setBooksToShow] = useState<Array<BookData>>([]);
   const [loading, setLoading] = useState(true);
   const staffPickIds: Array<string> = [
+    "/works/OL15829966W",
     "/works/OL134601W",
-    "/works/OL27482W",
-    "/works/OL893415W",
+    "/works/OL21009648W",
+    "/works/OL20203688W",
     "/works/OL10834W",
-    "/works/OL35392322W",
-    "/works/OL85892W",
-    "/works/OL1063588W",
-    "/works/OL28736183W",
-    "/works/OL3511459W",
+    "/works/OL21357519W",
     "/works/OL1911334W",
+    "/works/OL10343120W",
+    "/works/OL28736183W",
+    "/works/OL26841047W",
+    "/works/OL95178W",
+    "/works/OL3511459W",
+    "/works/OL24600223W",
+    // "/works/OL37478443W",
   ];
   const fetchStaffPicks = async () => {
     const bookResults = staffPickIds.map(async (id) => {

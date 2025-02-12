@@ -14,8 +14,8 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
   const [menuType, setMenuType] = useState<undefined | string>(undefined);
 
   return (
-    <nav className="bg-backbground border-gray-200 shadow-md">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav className="bg-backbground border-gray-200 shadow-md md:pb-0 pb-4">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:p-4 px-4 pt-4 pb-0">
         <Link
           href="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -157,7 +157,11 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
           </ul>
         </div>
       </div>
-      <div className={`relative ${menuType === "search" ? "block" : "hidden"}`}>
+      <div
+        className={`relative ${
+          menuType === "search" ? "block" : "hidden"
+        } mx-4 mt-4`}
+      >
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           <svg
             className="w-4 h-4 text-gray-500 dark:text-gray-400"

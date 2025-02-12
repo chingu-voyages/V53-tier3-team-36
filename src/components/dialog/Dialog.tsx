@@ -166,7 +166,7 @@ export default function Dialog({ loggedIn }: Props) {
       ref={dialogRef}
       className="fixed top-50 left-50 -translate-x-50 -translate-y-50 z-10 rounded-xl backdrop:bg-gray-800/50"
     >
-      <div className="md:w-[500px] max-w-fullbg-gray-200 flex flex-col border">
+      <div className="md:w-[500px] max-w-fullbg-gray-200 flex flex-col border-[3px] border-lime-900 rounded-[12px]">
         <div className="flex flex-row justify-end pt-2 px-5">
           <button
             onClick={closeDialog}
@@ -179,13 +179,78 @@ export default function Dialog({ loggedIn }: Props) {
           {loading && <span>Loading...</span>}
           {bookData && authorData && (
             <div>
-              <div className="my-4">
-                <NextImg
-                  src={`https://covers.openlibrary.org/w/olid/${extractedId}.jpg`}
-                  alt="book cover"
-                  height={200}
-                  width={150}
-                />
+              <div className="flex-col md:flex md:flex-row">
+                <div className="mb-4 shadow-md w-fit min-w-[150px] min-h-[200px]">
+                  <NextImg
+                    src={`https://covers.openlibrary.org/w/olid/${extractedId}.jpg`}
+                    alt="book cover"
+                    height={200}
+                    width={150}
+                  />
+                </div>
+                <div>
+                  <div className="my-2 md:ml-4 md:mt-0">
+                    {/* Ratings */}
+                    <div id="averageRating">
+                      <StarRating
+                        ratingProps={
+                          lumiBookRatingData
+                            ? lumiBookRatingData.averageRating!
+                            : null
+                        }
+                        title="Average Rating"
+                        readOnly
+                      />
+                    </div>
+                    <div id="userRating">
+                      <StarRating
+                        ratingProps={
+                          lumiBookRatingData
+                            ? lumiBookRatingData.userRating!
+                            : null
+                        }
+                        title="My Rating"
+                        onRatingChanged={handleUpdateRating}
+                      />
+                    </div>
+                  </div>
+                  {loggedIn && (
+                    <div className="mt-2 md:ml-4 flex flex-col">
+                      {!isOnUserReadList() ? (
+                        <button
+                          onClick={() => handleBookActionTaken("read")}
+                          className="bg-green-500 py-1 px-2 rounded border-none mr-2 mb-2 w-[225px]"
+                        >
+                          Add to Read
+                        </button>
+                      ) : (
+                        <button
+                          className="bg-orange-500 py-1 px-2 rounded border-none mr-2 mb-2 w-[225px]"
+                          onClick={() => handleBookActionTaken("remove_read")}
+                        >
+                          Remove from read List
+                        </button>
+                      )}
+                      {!isOnWantToReadList() ? (
+                        <button
+                          onClick={() => handleBookActionTaken("wantToRead")}
+                          className="bg-green-500 py-1 px-2 rounded border-none w-[225px] mb-4"
+                        >
+                          Add to Want To Read
+                        </button>
+                      ) : (
+                        <button
+                          className="bg-orange-500 py-1 px-2 rounded border-none mr-2 w-[225px] mb-4"
+                          onClick={() =>
+                            handleBookActionTaken("remove_wantToRead")
+                          }
+                        >
+                          Remove from want-to-read list
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
               <h1 className="text-3xl font-bold">{bookData.title}</h1>
               <h4 className="text-lg italic pb-3">{authorData.name}</h4>
@@ -205,63 +270,6 @@ export default function Dialog({ loggedIn }: Props) {
                     ? bookData.description
                     : bookData.description.value)}
               </span>
-              <div className="mt-2">
-                {/* Ratings */}
-                <div id="averageRating">
-                  <StarRating
-                    ratingProps={
-                      lumiBookRatingData
-                        ? lumiBookRatingData.averageRating!
-                        : null
-                    }
-                    title="Average Rating"
-                    readOnly
-                  />
-                </div>
-                <div id="userRating">
-                  <StarRating
-                    ratingProps={
-                      lumiBookRatingData ? lumiBookRatingData.userRating! : null
-                    }
-                    title="My Rating"
-                    onRatingChanged={handleUpdateRating}
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-          {loggedIn && (
-            <div className="flex flex-row justify-end mt-2">
-              {!isOnUserReadList() ? (
-                <button
-                  onClick={() => handleBookActionTaken("read")}
-                  className="bg-green-500 py-1 px-2 rounded border-none mr-2"
-                >
-                  Add to Read
-                </button>
-              ) : (
-                <button
-                  className="bg-orange-500 py-1 px-2 rounded border-none mr-2"
-                  onClick={() => handleBookActionTaken("remove_read")}
-                >
-                  Remove from read List
-                </button>
-              )}
-              {!isOnWantToReadList() ? (
-                <button
-                  onClick={() => handleBookActionTaken("wantToRead")}
-                  className="bg-green-500 py-1 px-2 rounded border-none"
-                >
-                  Add to Want To Read
-                </button>
-              ) : (
-                <button
-                  className="bg-orange-500 py-1 px-2 rounded border-none mr-2"
-                  onClick={() => handleBookActionTaken("remove_wantToRead")}
-                >
-                  Remove from want-to-read list
-                </button>
-              )}
             </div>
           )}
         </div>
