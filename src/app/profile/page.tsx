@@ -1,36 +1,88 @@
-import { auth, signOut } from "@/auth/auth";
+"use client"
+import { signOut } from "next-auth/react";
+import { User } from "@/lib/models/user.model";
+import { UserClient } from "app/clients/user-client";
+import { useSession } from "next-auth/react";
 import NextImg from "next/image";
 import { redirect } from "next/navigation";
-export default async function Profile() {
-  const session = await auth();
-  const user = session?.user;
+import { useEffect, useState } from "react";
+export default function Profile() {
+  const { data: session, status } = useSession ()
+  const [currentUser, setCurrentUser] = useState <Partial<User>|null>(null)
+  useEffect(() => {
+    const fetchUser = async () => {
+       const user = await UserClient.getUser()
+       setCurrentUser (user)
+    }
+    
+  }, [])
+  if (status === "unauthenticated")
+    return redirect ("/") 
+  return (
+    <div className="flex flex-col items-center w-full p-4">
+      <h1 className="font-bold text-lg">
+        Welcome {currentUser?.name ?? "Anonymous"}
+      </h1>
 
-  return user ? (
-    <div className="flex flex-col items-center w-full h-[400px] justify-center">
-      <div className="font-bold text-xl">Welcome {user.name}</div>
-      {user.image && (
+      {currentUser?.imageUrl && (
         <NextImg
           className="rounded-full border border-black h-16 w-16 my-4"
-          src={user.image}
-          alt={"User image"}
+          src={currentUser?.imageUrl}
+          alt="User image"
           width={32}
           height={32}
         />
       )}
+
+      <div className="mt-4">
+        <p><strong>Name:</strong> {currentUser?.name ?? "N/A"}</p>
+        <p><strong>Email:</strong> {currentUser?.email ?? "N/A"}</p>
+      </div>
+
       <form
         action={async () => {
-          "use server";
           await signOut();
         }}
+        className="mt-4"
       >
-        <button className="relative inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
-          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-            Sign out
-          </span>
+        <button className="p-2 bg-red-500 text-white rounded">
+          Sign out
         </button>
       </form>
+      { currentUser && (
+       <ProfileForm user={currentUser} />
+      )}
+      
     </div>
-  ) : (
-    redirect("/")
   );
+}
+
+function ProfileForm({ user }: { user: Partial<User> }) {
+  return (
+    <form action={updateProfile} className="mt-8 flex flex-col gap-4 w-full max-w-md">
+      <label htmlFor="bio">Bio</label>
+      <textarea id="bio" name="bio" defaultValue={user.bio ?? ""} rows={4} />
+
+      <label htmlFor="hashtags">Hashtags (comma separated)</label>
+      <input id="hashtags" name="hashtags" defaultValue={user.hashtags?.join(", ") ?? ""} />
+
+      <button type="submit" className="p-2 bg-blue-600 text-white rounded">
+        Update Profile
+      </button>
+    </form>
+  );
+}
+
+async function updateProfile(formData: FormData) {
+  
+
+  // parse fields
+  const bio = formData.get("bio")?.toString() || "";
+  const hashtagsString = formData.get("hashtags")?.toString() || "";
+  const hashtags = hashtagsString.split(",").map(t => t.trim()).filter(Boolean);
+
+  await UserClient.updateProfile ({hashtags, bio})
+
+  // redirect to see changes
+  redirect("/profile");
 }

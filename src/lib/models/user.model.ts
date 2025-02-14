@@ -6,4 +6,5 @@ export interface User {
   read: string[];
   wantToRead: string[];
   rated: string[];
+  hashtags: string[];
 }

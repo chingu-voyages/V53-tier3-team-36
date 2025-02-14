@@ -36,6 +36,16 @@ export const UserClient = {
     // Create an array of promises to fetch the book data from OpenLibrary
     return fetchBookData(olidWorkIds);
   },
+  updateProfile: async ({bio , hashtags}: {bio:string, hashtags:string[]}): Promise<void> => {
+    const res = await fetch("/api/user/profile", {
+      method: "PATCH", 
+      body: JSON.stringify ({bio, hashtags})
+    })
+    if (!res.ok) {
+      throw new Error("Failed to update the profile");
+     }
+  }
+
 };
 
 // Helper method to fetch book data from OpenLibrary

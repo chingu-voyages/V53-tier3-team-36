@@ -11,6 +11,7 @@ const userSchema = new Schema<User>(
     read: { type: [String], default: [] },
     wantToRead: { type: [String], default: [] },
     rated: { type: [String], default: [] },
+    hashtags: { type: [String], default: [] },
   },
   { timestamps: true }
 );
