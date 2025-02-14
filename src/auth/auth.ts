@@ -11,7 +11,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   callbacks: {
     signIn: async ({ account, profile }) => {
+      console.log("🚨 GitHub Auth Flow Started");
+      console.log("Provider:", account?.provider);
+      console.log("Profile Email:", profile?.email);
+      console.log("Profile Data:", JSON.stringify(profile, null, 2));
+      console.log("No profile found");
       if (!profile) return false;
+      console.log("No account found");
       if (!account) return false;
 
       try {
