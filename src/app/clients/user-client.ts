@@ -36,21 +36,26 @@ export const UserClient = {
     // Create an array of promises to fetch the book data from OpenLibrary
     return fetchBookData(olidWorkIds);
   },
-  updateProfile: async ({bio , hashtags}: {bio:string, hashtags:string[]}): Promise<void> => {
+  updateProfile: async ({
+    bio,
+    hashtags,
+  }: {
+    bio: string;
+    hashtags: string[];
+  }): Promise<void> => {
     const res = await fetch("/api/user/profile", {
-      method: "PATCH", 
-      body: JSON.stringify ({bio, hashtags})
-    })
+      method: "PATCH",
+      body: JSON.stringify({ bio, hashtags }),
+    });
     if (!res.ok) {
       throw new Error("Failed to update the profile");
-     }
-  }
-
+    }
+  },
 };
 
 // Helper method to fetch book data from OpenLibrary
 async function fetchBookData(
-  olidWorkIds: string[]
+  olidWorkIds: string[],
 ): Promise<{ books: BookData[]; authorsDictionary: Record<string, string> }> {
   const olidRequestPromises = olidWorkIds
     .filter((olid) => olid.includes("/works/"))
