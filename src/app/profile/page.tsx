@@ -7,7 +7,7 @@ import NextImg from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 export default function Profile() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const [currentUser, setCurrentUser] = useState<Partial<User> | null>(null);
   useEffect(() => {
     const fetchUser = async () => {
