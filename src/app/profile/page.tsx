@@ -14,7 +14,7 @@ export default function Profile() {
        const user = await UserClient.getUser()
        setCurrentUser (user)
     }
-    
+    fetchUser ()
   }, [])
   if (status === "unauthenticated")
     return redirect ("/") 
