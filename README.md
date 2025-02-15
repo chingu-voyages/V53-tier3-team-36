@@ -30,7 +30,7 @@ https://luminaria-library.vercel.app/
 
 ### Profile and Bio
 
-- Users can view and update their bio and their interest hastags.
+- Users can view and update their bio and their interest hashtags.
 
 ### Future Features
 
