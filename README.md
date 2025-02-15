@@ -1,6 +1,49 @@
 ## About the project
 
-TBD
+Luminaria is a library application that helps users rate books, keep track of titles they've read and want to read. It uses the openlibrary API to fetch trending books. We also have a staff picks session.
+
+### Live Deploy
+
+https://luminaria-library.vercel.app/
+
+### Screenshots
+
+<img src="public/screenshots/img00.png" />
+<img src="public/screenshots/img01.png" />
+<img src="public/screenshots/img02.png" />
+## Features
+
+### Authentication
+
+- Users can sign in and out of the app using Google or Github OAuth.
+
+### Book Management
+
+- Users can view book titles and cover images.
+- Users can view book title details.
+- Users can add a book title to their want-to-read and read lists
+- Users can give a star rating to books and can view an average rating among all Luminaria users for a given title
+
+### Search
+
+- Users can search for book titles.
+
+### Profile and Bio
+
+- Users can view and update their bio and their interest hashtags.
+
+### Future Features
+
+- Book recommendations
+
+## Tech Stack
+
+- <b>MongoDb</b> is our database stack, using <b>mongoose</b> as our ORM.
+- <b>NextJS</b> with <b>Typescript</b> we are using as our full-stack React frame-work
+- <b>Vercel</b> is the hosting provider.
+- <b>TailwindCSS</b> for styling.
+- <b>NextAuth</b> is used for authentication. We're using Github and Google OAuth providers.
+- <b>[Open Library](https://openlibrary.org/)</b> API is our source for book author, title and book image cover data
 
 ## Development environment
 
