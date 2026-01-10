@@ -1,0 +1,276 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fallback font import in case Next.js font optimization fails */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Primary Colors - Deep Library Theme */
+  --primary-burgundy: #722F37;
+  --primary-navy: #1E3A5F;
+  
+  /* Secondary Colors - Warm & Inviting */
+  --secondary-cream: #FDF8F3;
+  --secondary-ivory: #FFFEF7;
+  --secondary-warm-white: #FAF7F2;
+  
+  /* Accent Colors - Elegant Highlights */
+  --accent-gold: #C9A961;
+  --accent-copper: #B87333;
+  --accent-bronze: #A67B5B;
+  
+  /* Text Colors */
+  --text-primary: #2D2D2D;
+  --text-secondary: #5A5A5A;
+  --text-muted: #8A8A8A;
+  --text-light: #FFFFFF;
+  
+  /* Background Colors */
+  --background: #FAF7F2;
+  --background-card: #FFFFFF;
+  --background-dark: #1E3A5F;
+  --background-accent: #722F37;
+  
+  /* UI Colors */
+  --border-light: #E8E2D9;
+  --border-medium: #D4C9BC;
+  --shadow-color: rgba(30, 58, 95, 0.08);
+  --shadow-hover: rgba(30, 58, 95, 0.15);
+  
+  /* Legacy variables for compatibility */
+  --foreground: #722F37;
+  --font-lato: var(--font-body);
+  --font-chivo: var(--font-heading);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #FAF7F2;
+    --foreground: #722F37;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--text-primary);
+  background: var(--background);
+  font-family: var(--font-body), 'Source Sans 3', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Utilities */
+.font-display {
+  font-family: 'Lora', Georgia, 'Times New Roman', serif !important;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.font-body {
+  font-family: 'Source Sans 3', 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.65;
+}
+
+/* Heading Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), 'Lora', Georgia, 'Times New Roman', serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+h1 { font-weight: 700; }
+h2 { font-weight: 600; }
+h3 { font-weight: 600; }
+h4 { font-weight: 500; }
+
+/* Paragraph and body text */
+p, span, li, label {
+  font-family: var(--font-body);
+  line-height: 1.65;
+}
+
+/* Button and UI text */
+button, input, textarea, select {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Smooth Transitions */
+a, button, .transition-all {
+  transition: all 0.3s ease;
+}
+
+/* Elegant Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-bronze);
+}
+
+/* Card Hover Effect */
+.book-card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px var(--shadow-hover);
+}
+
+/* Button Base Styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-burgundy), #8B3D46);
+  color: var(--text-light);
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #8B3D46, var(--primary-burgundy));
+  box-shadow: 0 4px 12px rgba(114, 47, 55, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary-burgundy);
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 500;
+  border: 2px solid var(--primary-burgundy);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--primary-burgundy);
+  color: var(--text-light);
+}
+
+/* Section Title Styles */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-copper));
+  border-radius: 2px;
+}
+
+/* Carousel Customization */
+.react-multi-carousel-item {
+  display: flex;
+  justify-content: center;
+}
+
+/* Focus States for Accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+/* Logo Animation - Refined Gentle Float */
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.01);
+  }
+}
+
+/* Golden Shimmer Sweep Animation */
+@keyframes goldenShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.logo-float {
+  animation: gentleFloat 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  position: relative;
+}
+
+/* Subtle golden shimmer overlay */
+.logo-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(201, 169, 97, 0.15) 45%,
+    rgba(201, 169, 97, 0.25) 50%,
+    rgba(201, 169, 97, 0.15) 55%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: goldenShimmer 6s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Pause shimmer on hover for focus */
+.logo-float:hover::after {
+  animation-play-state: paused;
+  opacity: 0.5;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .logo-float {
+    animation: none;
+  }
+  .logo-shimmer::after {
+    animation: none;
+    opacity: 0;
+  }
+}
