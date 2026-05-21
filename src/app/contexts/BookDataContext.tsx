@@ -1,6 +1,7 @@
 "use client";
 import { BookData } from "@/types/open-library";
 import { UserClient } from "app/clients/user-client";
+import { useSession } from "next-auth/react";
 import { createContext, useEffect, useState } from "react";
 
 type BookDataState = {
@@ -28,11 +29,13 @@ type BookDataProvider = {
   children: React.ReactNode;
 };
 const BookDataProvider = ({ children }: BookDataProvider) => {
+  const { status } = useSession();
   const [wantToReadList, setWantToReadList] =
     useState<BookListWithAuthorDict | null>(null);
   const [readList, setReadList] = useState<BookListWithAuthorDict | null>(null);
 
   const getWantToReadList = async () => {
+    if (status !== "authenticated") return;
     setIsLoading(true);
     const data = await UserClient.getWantToRead();
     setWantToReadList(data);
@@ -40,6 +43,7 @@ const BookDataProvider = ({ children }: BookDataProvider) => {
   };
 
   const getReadList = async () => {
+    if (status !== "authenticated") return;
     setIsLoading(true);
     const data = await UserClient.getReadingList();
     setReadList(data);
@@ -49,9 +53,10 @@ const BookDataProvider = ({ children }: BookDataProvider) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    if (status !== "authenticated") return;
     getWantToReadList();
     getReadList();
-  }, []);
+  }, [status]);
 
   return (
     <BookDataContext.Provider

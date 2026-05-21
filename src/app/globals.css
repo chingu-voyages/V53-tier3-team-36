@@ -1,5 +1,5 @@
-/* Fallback font import in case Next.js font optimization fails */
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+/* Fallback font import in case Next.js font optimization fails */
 
 @tailwind base;
 @tailwind components;

@@ -10,12 +10,13 @@ export default function Profile() {
   const { status } = useSession();
   const [currentUser, setCurrentUser] = useState<Partial<User> | null>(null);
   useEffect(() => {
+    if (status !== "authenticated") return;
     const fetchUser = async () => {
       const user = await UserClient.getUser();
       setCurrentUser(user);
     };
     fetchUser();
-  }, []);
+  }, [status]);
   if (status === "unauthenticated") return redirect("/");
   return (
     <div className="flex flex-col items-center w-full p-6">

@@ -85,17 +85,19 @@ export default function Dialog({ loggedIn }: Props) {
   }, [bookId]);
 
   const getUserContext = async () => {
+    if (!loggedIn) return;
     const response = await UserClient.getUser();
     setUserContext(response);
   };
 
   useEffect(() => {
+    if (!loggedIn) return;
     getUserContext();
-  }, [bookId]);
+  }, [bookId, loggedIn]);
 
   useEffect(() => {
-    if (bookId) getBookRatingData();
-  }, [bookId]);
+    if (bookId && loggedIn) getBookRatingData();
+  }, [bookId, loggedIn]);
 
   useEffect(() => {
     if (bookData?.authors) {
@@ -186,6 +188,7 @@ export default function Dialog({ loggedIn }: Props) {
                     alt="book cover"
                     height={200}
                     width={150}
+                    style={{ width: "auto", height: "auto" }}
                   />
                 </div>
                 <div>

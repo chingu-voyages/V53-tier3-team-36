@@ -14,25 +14,32 @@ export default function Search() {
 
   const [books, setBooks] = useState<OpenLibraryBook[] | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const getSearchBooks = async () => {
-      if (categoryTerm) {
-        const bookList = await OpenLibrary.getBooksBySubjectSearch(
-          categoryTerm as string
-        );
-        const { works } = bookList;
-        const booksToShow = works.slice(0, 20);
-        setBooks(booksToShow);
-      } else {
-        const bookList = await OpenLibrary.getBooksBySearch(
-          searchTerm as string
-        );
-        const { docs } = bookList;
-        const booksToShow = docs.slice(0, 20);
-        setBooks(booksToShow);
+      try {
+        if (categoryTerm) {
+          const bookList = await OpenLibrary.getBooksBySubjectSearch(
+            categoryTerm as string
+          );
+          const { works } = bookList;
+          const booksToShow = works.slice(0, 20);
+          setBooks(booksToShow);
+        } else {
+          const bookList = await OpenLibrary.getBooksBySearch(
+            searchTerm as string
+          );
+          const { docs } = bookList;
+          const booksToShow = docs.slice(0, 20);
+          setBooks(booksToShow);
+        }
+      } catch (e) {
+        console.error("Failed to fetch search results:", e);
+        setError(true);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     getSearchBooks();
@@ -42,6 +49,8 @@ export default function Search() {
     <div className="w-full py-6">
       {loading ? (
         <BookCardLoading />
+      ) : error ? (
+        <p className="text-text-secondary text-center py-4">Unable to load search results. Please try again later.</p>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-2">
           {books?.map((book: OpenLibraryBook) => {

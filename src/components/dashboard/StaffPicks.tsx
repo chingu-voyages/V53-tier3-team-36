@@ -12,11 +12,12 @@ import { responsive } from "app/definitions/ResponsiveBreakpoints";
 export default function StaffPicks() {
   const [booksToShow, setBooksToShow] = useState<Array<BookData>>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const staffPickIds: Array<string> = [
     "/works/OL15829966W",
     "/works/OL134601W",
     "/works/OL21009648W",
-    "/works/OL20203688W",
+    "/works/OL45804W",
     "/works/OL10834W",
     "/works/OL21357519W",
     "/works/OL1911334W",
@@ -29,13 +30,19 @@ export default function StaffPicks() {
     // "/works/OL37478443W",
   ];
   const fetchStaffPicks = async () => {
-    const bookResults = staffPickIds.map(async (id) => {
-      const someAsyncValue = await OpenLibrary.getBookById(id);
-      return someAsyncValue;
-    });
-    const staffPickBooks = await Promise.all(bookResults);
-    setBooksToShow(staffPickBooks);
-    setLoading(false);
+    try {
+      const bookResults = staffPickIds.map(async (id) => {
+        const someAsyncValue = await OpenLibrary.getBookById(id);
+        return someAsyncValue;
+      });
+      const staffPickBooks = await Promise.all(bookResults);
+      setBooksToShow(staffPickBooks);
+    } catch (e) {
+      console.error("Failed to fetch staff picks:", e);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -63,6 +70,8 @@ export default function StaffPicks() {
               height={240}
             />
           </div>
+        ) : error ? (
+          <p className="text-text-secondary text-center py-4">Unable to load staff picks. Please try again later.</p>
         ) : (
           <Carousel responsive={responsive}>
             {booksToShow.map((book: BookData, i: number) => {

@@ -14,7 +14,7 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
   const [menuType, setMenuType] = useState<undefined | string>(undefined);
 
   return (
-    <nav className="bg-secondary-cream border-b border-border-light shadow-nav md:pb-0 pb-4">
+    <nav className="bg-gradient-to-r from-primary-wine via-primary-burgundy-dark to-primary-wine border-b border-accent-gold/30 shadow-nav-burgundy md:pb-0 pb-4">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:p-4 px-4 pt-4 pb-0">
         <Link
           href="/"
@@ -22,14 +22,14 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
         >
           <div className="logo-float logo-shimmer">
             <NextImg
-              src="https://img.icons8.com/?size=100&id=23662&format=png&color=000000"
+              src="https://img.icons8.com/?size=100&id=23662&format=png&color=FDF8F3"
               className="h-11 w-11 transition-all duration-500 ease-out group-hover:scale-105"
               alt="Luminaria Logo"
               width={44}
               height={44}
             />
           </div>
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-primary-burgundy font-display transition-all duration-500 ease-out group-hover:text-primary-navy">
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-secondary-cream font-display transition-all duration-500 ease-out group-hover:text-accent-gold">
             Luminaria
           </span>
         </Link>
@@ -39,7 +39,7 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
             data-collapse-toggle="navbar-search"
             aria-controls="navbar-search"
             aria-expanded="false"
-            className="md:hidden text-text-secondary hover:bg-warm-white hover:text-primary-burgundy focus:outline-none focus:ring-2 focus:ring-accent-gold rounded-xl text-sm p-3 me-1 transition-all duration-300 hover:shadow-md active:scale-95"
+            className="md:hidden text-secondary-cream/80 hover:bg-primary-burgundy hover:text-accent-gold focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-xl text-sm p-3 me-1 transition-all duration-300 hover:shadow-md active:scale-95"
             onClick={() => {
               if (menuType === undefined || menuType === "links") {
                 setMenuType("search");
@@ -68,7 +68,7 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
           <div className="relative hidden md:block">
             <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
               <svg
-                className="w-5 h-5 text-text-muted"
+                className="w-5 h-5 text-accent-gold/70"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -89,7 +89,7 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
           <button
             data-collapse-toggle="navbar-search"
             type="button"
-            className="inline-flex items-center p-3 w-11 h-11 justify-center text-sm text-text-secondary rounded-xl md:hidden hover:bg-warm-white hover:text-primary-burgundy focus:outline-none focus:ring-2 focus:ring-accent-gold transition-all duration-300 hover:shadow-md active:scale-95"
+            className="inline-flex items-center p-3 w-11 h-11 justify-center text-sm text-secondary-cream/80 rounded-xl md:hidden hover:bg-primary-burgundy hover:text-accent-gold focus:outline-none focus:ring-2 focus:ring-accent-gold/50 transition-all duration-300 hover:shadow-md active:scale-95"
             aria-controls="navbar-search"
             aria-expanded="false"
             onClick={() => {
@@ -124,13 +124,13 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
           } w-full md:flex md:w-auto md:order-1`}
           id="navbar-search"
         >
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-border-light rounded-xl bg-white md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-accent-gold/30 rounded-xl bg-primary-burgundy-dark md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
             {isLoggedIn ? (
               <>
                 <li>
                   <a
                     href="/library"
-                    className="block py-3 px-5 rounded-xl text-text-primary hover:text-primary-burgundy hover:bg-warm-white md:hover:bg-transparent md:p-0 font-medium transition-all duration-300"
+                    className="block py-3 px-5 rounded-xl text-secondary-cream/90 hover:text-accent-gold hover:bg-primary-burgundy md:hover:bg-transparent md:p-0 font-medium transition-all duration-300"
                     aria-current="page"
                   >
                     Library
@@ -139,7 +139,7 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
                 <li>
                   <a
                     href="/profile"
-                    className="block py-3 px-5 rounded-xl text-text-primary hover:text-primary-burgundy hover:bg-warm-white md:hover:bg-transparent md:p-0 font-medium transition-all duration-300"
+                    className="block py-3 px-5 rounded-xl text-secondary-cream/90 hover:text-accent-gold hover:bg-primary-burgundy md:hover:bg-transparent md:p-0 font-medium transition-all duration-300"
                     aria-current="page"
                   >
                     Profile
@@ -150,7 +150,7 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
               <li>
                 <button
                   onClick={handleLogin}
-                  className="block h-[48px] py-3 px-7 rounded-xl bg-primary-burgundy text-white hover:bg-primary-navy md:bg-primary-burgundy font-medium transition-all duration-300 ease-out shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] active:shadow-sm"
+                  className="block h-[48px] py-3 px-7 rounded-xl bg-gradient-to-r from-accent-gold to-accent-gold-dark text-primary-wine font-semibold hover:from-secondary-cream hover:to-rose-cream hover:text-primary-burgundy-dark md:bg-gradient-to-r transition-all duration-300 ease-out shadow-md hover:shadow-lg hover:shadow-accent-gold/30 hover:scale-[1.02] active:scale-[0.98] active:shadow-sm border border-accent-gold-dark/30 hover:border-primary-burgundy/30"
                 >
                   Sign In
                 </button>
@@ -166,7 +166,7 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
       >
         <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none z-10">
           <svg
-            className="w-5 h-5 text-text-muted"
+            className="w-5 h-5 text-primary-burgundy/50"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -181,7 +181,7 @@ export default function Header({ handleLogin, isLoggedIn }: Props) {
             />
           </svg>
         </div>
-        <SearchInput />
+        <SearchInput id="search-navbar-mobile" />
       </div>
     </nav>
   );

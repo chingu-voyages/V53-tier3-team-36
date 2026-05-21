@@ -3,12 +3,12 @@ import Link from "next/link";
 const socialLinks = (name: string, github: string, linkedin: string) => {
   return (
     <div className="flex justify-center items-center">
-      <span className="text-text-secondary">{name}</span>
+      <span className="text-secondary-cream/90 font-medium">{name}</span>
       <div className="flex items-center">
         <a
           href={github}
           target="_blank"
-          className="text-text-muted hover:text-primary-burgundy pl-2 transition-all"
+          className="text-accent-gold/60 hover:text-accent-gold pl-2 transition-all duration-300 hover:scale-110"
         >
           <svg
             className="w-4 h-4"
@@ -28,7 +28,7 @@ const socialLinks = (name: string, github: string, linkedin: string) => {
         <a
           href={linkedin}
           target="_blank"
-          className="text-text-muted hover:text-primary-burgundy pl-2 transition-all"
+          className="text-accent-gold/60 hover:text-secondary-cream pl-2 transition-all duration-300 hover:scale-110"
         >
           <svg
             className="w-4 h-4"
@@ -49,16 +49,16 @@ const socialLinks = (name: string, github: string, linkedin: string) => {
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary-cream border-t border-border-light mt-12">
+    <footer className="bg-gradient-to-b from-primary-burgundy-dark via-primary-wine to-primary-wine-dark border-t border-accent-gold/30 mt-12 shadow-footer">
       <div className="mx-auto w-full max-w-screen-xl">
         <div className="grid gap-8 px-4 pt-8 pb-4 md:grid-cols-3 sm:grid-cols-1">
           <div>
-            <h2 className="mb-6 text-lg font-display font-semibold text-primary-burgundy uppercase text-center">
-              <Link href="/">Luminaria</Link>
+            <h2 className="mb-6 text-lg font-display font-semibold text-accent-gold uppercase text-center">
+              <Link href="/" className="hover:text-secondary-cream transition-all duration-300">Luminaria</Link>
             </h2>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-text-primary uppercase text-center tracking-wide">
+            <h2 className="mb-6 text-sm font-semibold text-accent-gold/90 uppercase text-center tracking-wider">
               Our Team
             </h2>
             <ul className="text-text-secondary font-medium space-y-3">
@@ -100,20 +100,20 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-text-primary uppercase text-center tracking-wide">
+            <h2 className="mb-6 text-sm font-semibold text-accent-gold/90 uppercase text-center tracking-wider">
               <a
                 href="https://github.com/chingu-voyages/V53-tier3-team-36"
                 target="_blank"
-                className="hover:text-primary-burgundy transition-all"
+                className="hover:text-secondary-cream transition-all duration-300"
               >
                 Github
               </a>
             </h2>
           </div>
         </div>
-        <div className="px-4 pb-6 pt-4 border-t border-border-light md:flex md:items-center md:justify-between">
-          <span className="text-sm text-text-muted sm:text-center">
-            © 2025 <a href="/" className="hover:text-primary-burgundy transition-all">Luminaria</a> — Your Personal Library
+        <div className="px-4 pb-6 pt-4 border-t border-accent-gold/20">
+          <span className="text-sm text-secondary-cream/60 block text-center">
+            © 2026 <Link href="/" className="text-accent-gold hover:text-secondary-cream transition-all duration-300 font-medium">Luminaria</Link> - Your Personal Library
           </span>
         </div>
       </div>

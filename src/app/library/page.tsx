@@ -34,9 +34,9 @@ export default function Library() {
                       key={book!.key}
                       title={book!.title}
                       author={
-                        wantToReadList.authorsDictionary[
-                          book!.authors[0].author!.key!
-                        ]
+                        book?.authors?.[0]?.author?.key
+                          ? wantToReadList.authorsDictionary[book.authors[0].author.key]
+                          : "Unknown Author"
                       }
                       id={book!.key}
                       url={`/library/?`}
@@ -69,9 +69,9 @@ export default function Library() {
                       key={book!.key}
                       title={book!.title}
                       author={
-                        readList.authorsDictionary[
-                          book!.authors[0].author!.key!
-                        ]
+                        book?.authors?.[0]?.author?.key
+                          ? readList.authorsDictionary[book.authors[0].author.key]
+                          : "Unknown Author"
                       }
                       id={book!.key}
                       url={`/library/?`}
