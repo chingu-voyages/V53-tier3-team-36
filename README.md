@@ -8,9 +8,12 @@ https://luminaria-library.vercel.app/
 
 ### Screenshots
 
-<img src="public/screenshots/img00.png" />
-<img src="public/screenshots/img01.png" />
-<img src="public/screenshots/img02.png" />
+<img width="1230" height="1773" alt="luminaria-library vercel app_(Luminaria)" src="https://github.com/user-attachments/assets/587eabb2-41c1-4bb6-9b7e-4c99285d743f" />
+<img width="1230" height="1773" alt="luminaria-library vercel app__showDialog=y work=_works_OL15829966W(Luminaria)" src="https://github.com/user-attachments/assets/81bbc7ee-64fc-4090-af10-b80690de0a45" />
+<img width="1230" height="1773" alt="luminaria-library vercel app_(Luminaria) (1)" src="https://github.com/user-attachments/assets/30845781-0361-42fa-b8ed-712104c87748" />
+<img width="1230" height="1773" alt="luminaria-library vercel app_library(Luminaria)" src="https://github.com/user-attachments/assets/1814c2c6-55f6-4ede-9dcb-025e6db7b00a" />
+<img width="1230" height="1773" alt="luminaria-profile" src="https://github.com/user-attachments/assets/78981166-50cd-42fe-8296-36ce36b70864" />
+
 ## Features
 
 ### Authentication
